@@ -12,7 +12,11 @@ WHERE a.release_year BETWEEN 2019 AND 2020;
 SELECT 
     a.title AS album_title,
     ROUND(AVG(t.duration)) AS avg_duration_sec,
-    CONCAT(FLOOR(AVG(t.duration)/60), ':', LPAD(FLOOR(AVG(t.duration)%60, 2, '0')) AS avg_duration_formatted
+    CONCAT(
+        FLOOR(AVG(t.duration)/60), 
+        ':', 
+        LPAD(FLOOR(AVG(t.duration)%60)::text, 2, '0')
+    ) AS avg_duration_formatted
 FROM albums a
 JOIN tracks t ON a.id = t.album_id
 GROUP BY a.title
