@@ -6,8 +6,7 @@ LIMIT 1;
 
 SELECT title 
 FROM tracks 
-WHERE duration >= 210;
-
+WHERE string_to_array(lower(title), ' ') && ARRAY['my', 'мой'];
 
 SELECT title 
 FROM compilations 
